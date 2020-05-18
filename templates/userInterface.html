@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+
+      <title>KEYWORD DRIVEN EXPLORATION OF RELATIONAL DATA</title>
+
+      <style>
+
+        html, body { 
+        overflow-y: scroll,
+        height: 100%;}
+
+        body {
+          background-color: #90EE90 ;
+        }
+
+        select.dbselect {
+        text-align: center;
+        display:flex;
+        margin:auto;
+      }
+
+
+        div:first-of-type {
+          display: flex;
+          align-items: center;
+          margin-bottom: 5px;
+          
+        }
+
+        p{
+          text-align: center;
+          font-size: 18px;
+
+        }
+
+        label {
+            display: block;
+            text-align: center;
+            font-size: 18px;
+            
+        }
+
+
+
+        button {
+            background-color:white;
+            color:black;
+            padding: 5px 10px;
+            border-radius: 0;
+            border: 0;
+            font-size: 14px;
+            margin:auto;
+            display:flex;
+        }
+
+
+
+        table {
+        font-family: "Trebuchet MS", Times, sans-serif;
+        overflow: auto;
+        height: 300px;
+        display:block;
+        border-collapse: collapse;
+        }
+
+
+        td {
+          border: 1px solid black;
+          padding: 6px;
+          background-color: #FFFFFF;
+          text-align:   center;
+        }
+
+
+        th {
+          border: 1px solid black;
+          padding-top: 15px;
+          padding-bottom: 15px;
+          background-color: #2F4F4F;
+          color: white;
+          position: sticky;
+          text-align: center;
+          top: 0;
+        }
+
+
+
+          .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+            max-width: 500px;
+            max-height: 500px;
+          }
+
+          .extra {
+            background-color: #2F4F4F;
+          }
+
+          .extra a:hover {
+            color: #2F4F4F ;
+            background-color: #FFFFFF;
+          }
+
+
+          .extra a.present {
+            color: #FFFFFF ;
+            background-color: #82b74b;
+          }
+
+          .extra a {
+            color: #FFFFFF;
+            padding: 20px;
+            text-decoration: none;
+            text-align: center;
+            font-size: 20px;
+          }
+
+        </style>
+
+
+    <div class="extra">
+      <a class="present" href="#home">Home</a>
+      <a href="{{url_for('About')}}">About Datasets</a>
+      <a href="{{url_for('TeamMem')}}">Members</a>
+    </div>
+
+   <img src="{{url_for('static', filename = 'styles/Project_logo.JPG')}}" class='center'>
+
+
+   <body>
+    <p>              </p>
+
+
+      <div class="rak">
+   		<form method="POST" action="my_submit" class="center">
+          <label for="dropdown" class="center">SELECT THE DATABASE: </label>
+            <select name="dbDropDown"  class="dbselect">
+               <option value="Adv">Database1 - AdventureWorks</option>
+               <option value="Chi">Database2 - Chinook</option>
+               <option value="Wor">Database3 - World</option>
+            </select> 
+            
+
+            <label for="search" class="center">ENTER THE QUERY AND HIT SUBMIT: </label>
+   		    <input name="search" placeholder="searchbox" required class="center">
+   		    <input type="submit" value='Submit!'  class="center">
+             <label for="results">SEARCH RESULTS FOR: </label> 
+   		     <input id = "search" type="text" name="Resultsbox" class="center" placeholder="Retrieved Results" value={{dbname}}>
+           <label for="results">TIME TAKEN FOR SEARCH:</label> 
+            <input id = "recordtime" type="text" name="Time" class="center" align="center" placeholder="Time taken"  value={{recTime}}> 
+
+
+   		</form>
+      </div>
+
+
+
+<div>
+   <form name = "table1" method="POST" action="tb1click">
+
+      <p>{{tb1name}}</p>
+
+      <table align= "center">
+         <tr>
+         {% for eachc in col_header1 %}
+            <th>{{eachc}}</th>
+         {% endfor %}
+         </tr>
+         {% for eachr in data1 %}
+            <tr>
+            {% for c, r in zip(col_header1, eachr) %}
+                    {% if c in lc1 %}
+                        {% if r == None %}
+                        <td>{{r}}</td>
+                        {% else %}
+                        <td>
+                          <a name="tb1href" href="{{url_for('leadsto', rowname = r, colname = c, tbname = tb1name, dname = dbname)}}">  {{r}} </a>
+                        </td> 
+                        {% endif %}
+                    {% else %}
+                        <td>{{r}}</td>
+                    {% endif %}
+              {% endfor %}
+            </tr>
+            {% endfor %}
+      </table>
+    </form>
+</div> 
+
+
+<div>
+  <form method="POST" action="tb2click">
+
+      <p>{{tb2name}}</p>
+        <table>
+          <tr>
+            {% for eachc in col_header2 %}
+            <th>{{eachc}}</th>
+            {% endfor %}
+          </tr>
+
+          {% for eachr in data2 %}
+          <tr>
+           {% for c, r in zip(col_header2, eachr) %}
+                    {% if c in lc2 %}
+                        {% if r == None %}
+                            <td>
+                              {{r}}
+                            </td> 
+                                
+                        {% else %}
+                            <td>
+                              <a name="tb2href" href="{{url_for('leadsto', rowname = r, colname = c, tbname = tb2name, dname = dbname)}}">  {{r}} </a>      
+                            </td> 
+                          {% endif %}
+                    {% else %}
+                          <td>{{r}}</td>
+                    {% endif %}
+            {% endfor %}
+       
+            </tr>
+            {% endfor %}
+          </table>
+    </form>
+</div> 
+
+<div>
+  <form method="POST" action="tb3click">
+   <p>{{tb3name}}</p>
+      <table>
+        <tr>
+
+          {% for eachc in col_header3 %}
+                <th>{{eachc}}</th>
+          {% endfor %}
+
+        </tr>
+
+           {% for eachr in data3 %}
+            <tr>
+           {% for c, r in zip(col_header3, eachr) %}
+                {% if c in lc3 %}                   
+                  {% if r == None %}
+                  <td>
+                   {{r}}
+                  </td> 
+                                
+                  {% else %}
+                   <td>
+                    <a name="tb3href" href="{{url_for('leadsto', rowname = r, colname = c, tbname = tb3name, dname = dbname)}}">  {{r}} </a>      
+                   </td> 
+
+                  {% endif %}
+
+                  {% else %}
+
+                  <td>{{r}}</td>
+
+                 {% endif %}
+            {% endfor %}
+       
+            </tr>
+            {% endfor %}
+      </table>
+    </form>
+</div> 
+
+
+<div>
+   <form name = "final" method="POST" action="finalclick">
+
+       <p>All results together</p>
+          <table align= "center">
+
+           <tr>
+           {% for eachc in col_header %}
+           <th>{{c}}</th>
+           {% endfor %}
+           </tr>
+
+            {% for eachr in data %}
+            <tr>
+            {% for c, r in zip(col_header, eachr) %}
+                 <td>{{r}}</td>
+            {% endfor %}
+            </tr>
+
+            {% endfor %}
+          </table>
+
+
+
+    </form>
+  </div> 
+   
+</body>
+</html>

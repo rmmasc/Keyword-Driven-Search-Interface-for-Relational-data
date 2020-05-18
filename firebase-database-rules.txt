@@ -1,0 +1,42 @@
+{
+  "rules": {
+    ".read": true,
+    ".write": true,
+    "world":{
+      "city":{
+      ".indexOn":["CountryCode","ID"]
+      },
+        "country":{
+          ".indexOn":["Code"]
+        },
+        "countrylanguage":{
+      ".indexOn":["CountryCode","Language"]
+      }
+          
+    },
+      "adventureworks":{
+      "product":{
+      ".indexOn":["ProductID"]
+      },
+        "vendor":{
+          ".indexOn":["VendorID"]
+        },
+        "productvendor":{
+      ".indexOn":["ProductID","VendorID"]
+      }
+          
+    },
+      "chinook":{
+      "album":{
+      ".indexOn":["ArtistId","AlbumId"]
+      },
+        "track":{
+          ".indexOn":["AlbumId","TrackId"]
+        },
+        "artist":{
+      ".indexOn":["ArtistId"]
+      }
+          
+    }
+  }
+}

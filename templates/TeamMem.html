@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TEAM MEMBERS INFO</title>
+
+	<style>
+		body {
+			background-color: #90EE90 ;
+			}
+
+		.verti {
+			  float: left;
+			  padding: 120px;
+			  width: 33.3%;
+			}
+
+		.hori::after {
+			  content: "";
+			  display: table;
+			  clear: both;
+			}
+
+		
+		figure {
+			    text-align: center; 
+			    margin:  auto; 
+			}
+
+		figure .image {
+		    width: 100%;
+		    font-size: 30px;
+			}
+
+		p {
+			text-align: center;
+			font-size: 45px;
+			font-family: "Lucida Console";
+
+			}
+
+
+		.center {
+		      display: block;
+		      margin-left: auto;
+		      margin-right: auto;
+		      width: 100%;
+		      max-width: 500px;
+		      max-height: 500px;
+   			}
+	</style>
+</head>
+<body>
+	<p><b><i>Team Members</i></b></p>
+	<div id="jar" class="hori">
+		<div class="verti">
+
+		<figure class="center">
+			<img src= "{{url_for('static', filename = 'styles/Royston.jpeg')}}" width="400px" height="400px"/>
+			<figcaption style="font-size: 20px"><b><i>ROYSTON MASCARENHAS</br></i></b>	
+						<b><i>USC ID: 8286-3281-66</br></i></b>	
+						<b><i>Email ID: rmascare@usc.edu</i></b>
+			</figcaption>	
+		</figure>
+		</div>
+		<div class="verti">
+		<figure class="center">
+			<img src= "{{url_for('static', filename = 'styles/Rakshitha.jpeg')}}" width= "400px" height="400px" />
+
+			<figcaption style="font-size: 20px"><b><i>RAKSHITHA PANDURANGA</br></i></b>
+						<b><i>USC ID: 7890-1614-34</br></i><b>
+						<b><i>Email ID: rpandura@usc.edu</i></b>
+			</figcaption>	
+		</figure>
+	</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ABOUT THE DATASETS</title>
+
+	<style>
+		body {
+			background-color: #90EE90 ;
+			}
+
+		.pheader{
+			text-align: center;
+			font-size: 45px;
+			}
+	</style>
+
+</head>
+<body>
+	<div>
+	<p class="pheader"><b><i>Adventure Works</i></b></p>
+	<p>AdventureWorks Database is created by Microsoft for Microsoft SQL Server and is based on a non-existent bicycle manufacturer. It contains details about the company’s Manufacturing, Sales, Purchasing, Product Management, Contact Management and Human Resources. Here, only the Product Management tables have been considered. </p>
+		<table border="1" align="center">
+		<tr>
+			<th>Tables chosen</th>
+			<th>Primary Keys</th>
+			<th>Foreign Key Relationships</th>
+			<th>Data count</th>
+		</tr>
+
+		<tr>
+			<td>product</td>
+			<td>ProductID</td>
+			<td>product.ProductID ← productvendor.ProductID</td>
+			<td>504</td>
+		</tr>
+
+		<tr>
+			<td>productvendor</td>
+			<td>ProductID,</br>
+			VendorID</td>
+			<td>productvendor.ProductID → product.ProductID</br>
+				productvendor.VendorID → vendor.VendorID
+			</td>
+			<td>406</td>
+		</tr>
+
+		<tr>
+			<td>vendor</td>
+			<td>VendorID</td>
+			<td>vendor.VendorID ← productvendor.VendorID</td>
+			<td>104</td>
+		</tr>
+
+	</table>	
+</div>
+	<p class="pheader"><b><i>Chinook</i></b></p>
+	
+
+	<p>The Chinook Database is a collection of real data collected from an iTunes Library. It is an alternative to the NorthernWind database but consists of details regarding the various artists and the songs that they possess. For the project, we are considering the Track, Album and Artist tables such that given a particular track, our search engine is able to extract the artist who composed the track.</p>
+
+	<table border="1" align="center">
+		<tr>
+			<th>Tables chosen</th>
+			<th>Primary Keys</th>
+			<th>Foreign Key Relationships</th>
+			<th>Data count</th>
+		</tr>
+
+		<tr>
+			<td>track</td>
+			<td>TrackID</td>
+			<td>track.AlbumID → album.AlbumID</td>
+			<td>3503</td>
+		</tr>
+
+		<tr>
+			<td>album</td>
+			<td>AlbumID</td>
+			<td>album.AlbumID ←  track.AlbumID</br>
+				album.ArtistID → artist.ArtistID</td>
+			<td>347</td>
+		</tr>
+
+		<tr>
+			<td>artist</td>
+			<td>ArtistID</td>
+			<td>artist.ArtistID ← album.ArtistID</td>
+			<td>275</td>
+		</tr>
+	</table>
+</div>
+
+
+	
+
+	<div>
+	<p class="pheader"><b><i>World</i></b></p>
+	<p>The world dataset is the dataset prescribed for this project. It consists of details about cities, countries, languages and their relations. The relations are explored using the country-code attribute, which go by different column names in different tables.</p>
+
+		<table border="1" align="center">
+		<tr>
+			<th>Tables chosen</th>
+			<th>Primary Keys</th>
+			<th>Foreign Key Relationships</th>
+			<th>Data count</th>
+		</tr>
+
+		<tr>
+			<td>city</td>
+			<td>ID</td>
+			<td>country.Code ← city.CountryCode</td>
+			<td>4079</td>
+		</tr>
+
+		<tr>
+			<td>country</td>
+			<td>Code</td>
+			<td>country.Code ← city.CountryCode,</br>
+			country.Code ← countrylaguage.CountryCode</td>
+			<td>239</td>
+		</tr>
+
+		<tr>
+			<td>countrylanguage</td>
+			<td>CountryCode,</br>
+			Language</td>
+			<td>country.Code ← countrylaguage.CountryCode</td>
+			<td>984</td>
+		</tr>
+
+	</table>	
+</div>
+
+
+
+</body>
+</html>
